@@ -67,7 +67,7 @@ const EmployeDetails = () => {
         <>
             <div className="main flex h-auto ">
                 {/* Left Panel */}
-                
+
                 <SideBar />
 
 
@@ -99,37 +99,51 @@ const EmployeDetails = () => {
                                 {currentEmployees.map(emp => (
                                     <tr
                                         key={emp.Hiring_TestID}
-                                        className="bg-white border-t border-gray-200 text-sm text-gray-700"
+                                        className="group hover:bg-gray-50 border-t border-gray-200 text-sm text-gray-700 transition-all"
                                     >
-                                        <td className="px-4 py-3">
-                                            <div className="flex flex-row items-start space-x-3">
-                                                {/* Profile Picture or Icon */}
+                                        {/* Profile & Details */}
+                                        <td className="px-4 py-4">
+                                            <div className="flex items-center space-x-4">
                                                 {emp.profilePicture ? (
                                                     <img
                                                         src={emp.profilePicture}
                                                         alt="Profile"
-                                                        className="w-10 h-10 rounded-full object-cover border border-gray-300"
+                                                        className="w-12 h-12 rounded-full object-cover border border-gray-300 shadow-sm"
                                                     />
                                                 ) : (
-                                                    <div className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-200 text-gray-500 text-xl">
+                                                    <div className="w-12 h-12 rounded-full flex items-center justify-center bg-gray-200 text-gray-500 text-xl">
                                                         👤
                                                     </div>
                                                 )}
-
-                                                {/* Employee Details */}
-                                                <div className="flex flex-col">
-                                                    <span className="text-sm font-medium">{`${emp.firstName} ${emp.lastName}`}</span>
-                                                    <span className="text-sm text-gray-600">{emp.phoneNumber}</span>
-                                                    <span className="text-sm text-gray-600">{emp.email}</span>
+                                                <div>
+                                                    <div className="font-semibold text-gray-800">{emp.firstName} {emp.lastName}</div>
+                                                    <div className="text-gray-500 text-sm">{emp.phoneNumber}</div>
+                                                    <div className="text-gray-500 text-sm">{emp.email}</div>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td className="px-4 py-3 break-words">{`${emp.city}, ${emp.country}`}</td>
-                                        <td className="px-4 py-3 break-words">{emp.createdAt}</td>
-                                        <td className="px-4 py-3 break-words">{`${emp.latitude}, ${emp.longitude}`}</td>
+
+                                        {/* Location */}
+                                        <td className="px-4 py-4 whitespace-nowrap">
+                                            <div className="text-gray-800">{emp.city}</div>
+                                            <div className="text-gray-500 text-sm">{emp.country}</div>
+                                        </td>
+
+                                        {/* Created At */}
+                                        <td className="px-4 py-4 whitespace-nowrap">
+                                            <div className="text-gray-800">{new Date(emp.createdAt).toLocaleDateString()}</div>
+                                            <div className="text-gray-500 text-sm">Created</div>
+                                        </td>
+
+                                        {/* Coordinates */}
+                                        <td className="px-4 py-4 whitespace-nowrap">
+                                            <div className="text-gray-800">{emp.latitude}</div>
+                                            <div className="text-gray-500 text-sm">{emp.longitude}</div>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
+
                         </table>
                     </div>
 

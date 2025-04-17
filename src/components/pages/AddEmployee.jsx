@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { addEmployee, getActivationCode } from '../../Api/EarnFlexApi';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 
 const AddEmployee = ({ setShowModal }) => {
@@ -134,7 +133,7 @@ const AddEmployee = ({ setShowModal }) => {
                     </div>
                 </form>
             </div>
-            <ToastContainer position="top-right" autoClose={3000} />
+
         </div >
 
 

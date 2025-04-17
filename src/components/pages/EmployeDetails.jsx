@@ -1,6 +1,7 @@
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useTransition } from 'react'
 import { getActivationCode, getEmployees } from '../../Api/EarnFlexApi'
+import { Loader } from '../UI/Loader'
 
 const EmployeDetails = () => {
     const [employees, setEmployees] = useState([])
@@ -9,22 +10,26 @@ const EmployeDetails = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [employeesPerPage] = useState(10)
 
+    const [isPending, startTransition] = useTransition()
 
-    const fetchEmployees = async () => {
+    const fetchEmployees = () => {
         try {
-            // Step 1: Always get a fresh activation code
-            const codeRes = await getActivationCode()
-            const activationCode = codeRes.data.activationCode
+            startTransition( async () => {
 
-            // Step 2: Use the fresh code to get employees
-            const empRes = await getEmployees(activationCode)
-            // console.log(empRes);
-
-
-            // Step 3: Set employees safely
-            const allEmployees = Array.isArray(empRes.data) ? empRes.data : []
-            console.log(allEmployees);
-            setEmployees(allEmployees)
+                // Step 1: Always get a fresh activation code
+                const codeRes = await getActivationCode()
+                const activationCode = codeRes.data.activationCode
+                
+                // Step 2: Use the fresh code to get employees
+                const empRes = await getEmployees(activationCode)
+                // console.log(empRes);
+                
+                
+                // Step 3: Set employees safely
+                const allEmployees = Array.isArray(empRes.data) ? empRes.data : []
+                console.log(allEmployees);
+                setEmployees(allEmployees)
+            })
         } catch (err) {
             console.error("Error fetching employees", err)
         }
@@ -52,6 +57,10 @@ const EmployeDetails = () => {
     useEffect(() => {
         fetchEmployees()
     }, [])
+
+
+    if(isPending) return <Loader />
+
     return (
         <div className="max-w-7xl mx-auto px-4 py-8">
             <h1 className="text-3xl font-bold mb-6 text-gray-800">Employee Directory</h1>

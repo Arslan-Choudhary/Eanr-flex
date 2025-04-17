@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const AddEmployee = ({ setShowModal }) => {
 
-    const [code, setCode] = useState("")
+    // const [code, setCode] = useState("")
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -36,6 +36,7 @@ const AddEmployee = ({ setShowModal }) => {
             console.log(res);
 
             toast.success("Employee added successfully! 🎉");
+            setShowModal(false)
 
         } catch (error) {
             console.log("error submitting", error);
@@ -75,9 +76,8 @@ const AddEmployee = ({ setShowModal }) => {
         getCode()
     }, [])
 
-
     return (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50" >
+        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[9999]" >
 
             <div className="bg-white p-6 rounded-xl shadow-xl w-full max-w-md">
                 <h2 className="text-xl font-semibold mb-4">Add New Worker</h2>

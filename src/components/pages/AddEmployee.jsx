@@ -5,7 +5,6 @@ import { toast } from 'react-toastify';
 
 const AddEmployee = ({ setShowModal }) => {
 
-    // const [code, setCode] = useState("")
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -55,15 +54,12 @@ const AddEmployee = ({ setShowModal }) => {
         })
         console.log('Submitted Data:', formData);
 
-
-        // You can send `formData` to your backend here
     };
 
     const getCode = async () => {
         const codeRes = await getActivationCode()
         const activeCode = codeRes.data.activationCode
         console.log(activeCode);
-        // setCode(activeCode)
 
         setFormData((prev) => ({
             ...prev,

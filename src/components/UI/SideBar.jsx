@@ -1,6 +1,7 @@
 
 import { FaCircle } from "react-icons/fa";
 import { LuCodesandbox } from "react-icons/lu";
+import { IoIosArrowDown } from "react-icons/io";
 import { MdDashboard, MdPeople, MdSecurity, MdConstruction, MdChecklist, MdHandshake, MdSettings } from "react-icons/md";
 
 const SideBar = () => {
@@ -29,9 +30,10 @@ const SideBar = () => {
                         <MdDashboard className="text-xl" />
                         <span>Dashboard</span>
                     </div>
-                    <div className="flex items-center space-x-3 text-lg hover:opacity-90 cursor-pointer">
+                    <div className="flex items-center bg-black p-2 rounded space-x-3 text-lg hover:opacity-90 cursor-pointer">
                         <MdPeople className="text-xl" />
                         <span>Workers</span>
+                        <IoIosArrowDown className="ml-25" />
                     </div>
                     <div className="flex items-center space-x-3 text-lg hover:opacity-90 cursor-pointer">
                         <MdChecklist className="text-xl" />

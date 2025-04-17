@@ -12,7 +12,7 @@ const Header = () => {
 
   return (
     <>
-      <nav className="flex items-center justify-between border-b-2 pb-2 ">
+      <nav className="flex items-center justify-between border-b-1 pb-2 ">
         <ul className='flex p-4 pl-11'>
           <li className=''>
             <NavLink to="/" className={({ isActive }) =>
